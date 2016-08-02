@@ -1,0 +1,13 @@
+{
+	"_info": "accounts, set to 'false' with no quotes for random",
+	"password": "password",
+
+	"_info": "threads and accounts to make",
+	"threads": 1,
+	"accounts_per_thread": 20,
+
+	"_info": "file output",
+	"output_password": true,
+	"separator": ":",
+	"end_of_line": ""
+}
