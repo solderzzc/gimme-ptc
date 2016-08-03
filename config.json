@@ -1,10 +1,11 @@
 {
-	"_info": "accounts, set to 'false' with no quotes for random",
+	"_info": "accounts: FOR RANDOM: set prefix or password to 'false' with no quotes ",
+	"username_prefix": false,
 	"password": "password",
 
 	"_info": "threads and accounts to make",
 	"threads": 1,
-	"accounts_per_thread": 20,
+	"accounts_per_thread": 1,
 
 	"_info": "file output",
 	"output_password": true,

@@ -9,10 +9,13 @@ require 'terminal-table'
 require 'colorize'
 require 'json'
 
+require 'rubygems'
+exit if Object.const_defined?(:Ocra)
+
 $VERBOSE = nil
 
 
-trap "INT" do
+trap "SIGINT" do
 	Thread.list.each do |t|
 		t.exit unless t == Thread.current
 	end
@@ -36,7 +39,7 @@ def parse_cookies(all_cookies)
     cookies
 end
 
-def create_account(thread_index, password)
+def create_account(thread_index, password, prefix)
 
 	httpclient = HTTPClient.new
 	httpclient.ssl_config.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -71,8 +74,14 @@ def create_account(thread_index, password)
 
 	final_signup_form_response = httpclient.get(final_signup_url)
 
-	o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
-	username = (0...12).map { o[rand(o.length)] }.join
+	
+	if !prefix
+		o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+		username = (0...12).map { o[rand(o.length)] }.join
+	else
+		o = (0..9).to_a
+		username = prefix + ((0..6).map { o[rand(o.length)] }.join).to_s
+	end
 	password ||= (0...12).map { o[rand(o.length)] }.join
 	email = "#{username.downcase}@divismail.ru"
 	md5_email = Digest::MD5.hexdigest(email)
@@ -201,6 +210,7 @@ $try_count = []
 $fails = []
 $status = []
 $threads = $conf['threads']
+$conf['username_prefix'] ||= false
 
 
 print "\e[H\e[2J"
@@ -231,7 +241,7 @@ $threads.times do |i|
     	
 		while($counter[i] < $times)
 			begin
-				create_account(i, $conf['password'])
+				create_account(i, $conf['password'], $conf['username_prefix'])
 				$counter[i] += 1
 				$try_count[i] += 1
 			rescue => e
