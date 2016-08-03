@@ -3,7 +3,7 @@ Generate PTC accounts
 modified version of : https://github.com/ocjd/ptc-account-creator
 
 # How to
-* Download ZIP, extract, edit config.json and run: https://github.com/xssc/gimme-ptc/releases/download/v1.0/ptc-account-creator.zip
+* Download ZIP, extract, edit config.json and run: https://github.com/xssc/gimme-ptc/releases/download/v1.1/ptc-account-creator.zip
 
   OR
 
