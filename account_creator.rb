@@ -196,7 +196,7 @@ def create_account(thread_index, password, prefix)
 	response = httpclient.post(tos_page, tos_parameters, headers)
 
 
-	File.open("accounts.txt", 'a') do |file|
+	File.open("export/accounts.txt", 'a') do |file|
 		if $conf['output_password']
 			file.puts username + $conf['separator'] + password + $conf['end_of_line']
 		else
