@@ -13,3 +13,11 @@ modified version of : https://github.com/ocjd/ptc-account-creator
 * Modify your config.json
 * cd to the folder you downloaded it to
 * run `ruby account_creator.rb`
+
+  OR
+  
+0. install docker
+1. config config.json
+2. run ./generate_Gemfile.lock.sh
+3. run ./build_docker.sh
+4. run ./run.sh
