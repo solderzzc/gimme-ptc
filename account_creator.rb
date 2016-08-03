@@ -78,12 +78,15 @@ def create_account(thread_index, password, prefix)
 	if !prefix
 		o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
 		username = (0...12).map { o[rand(o.length)] }.join
+		email = username
 	else
 		o = (0..9).to_a
 		username = prefix + ((0..6).map { o[rand(o.length)] }.join).to_s
+		o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+		email = (0...12).map { o[rand(o.length)] }.join
 	end
 	password ||= (0...12).map { o[rand(o.length)] }.join
-	email = "#{username.downcase}@divismail.ru"
+	email = "#{email.downcase}@divismail.ru"
 	md5_email = Digest::MD5.hexdigest(email)
 
 	final_signup_parameters = {
